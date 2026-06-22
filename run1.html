@@ -11,19 +11,19 @@
 <script id="game-code" type="application/json">
 
 {
-  "oyun_adi": "Uzay Kristali Gorevi",
-  "sahne_renk": "#020617",
+  "oyun_adi": "Surtunme Kuvveti Deneyi",
+  "sahne_renk": "#0f172a",
   "karakterler": [
     {
-      "isim": "OyuncuGemisi",
+      "isim": "Arac",
       "gorunum": {
         "sekil": "dikdortgen",
-        "renk": "#38bdf8",
-        "genislik": 34,
-        "yukseklik": 42
+        "renk": "#3b82f6",
+        "genislik": 40,
+        "yukseklik": 25
       },
-      "ilk_x": -190,
-      "ilk_y": -120,
+      "ilk_x": -180,
+      "ilk_y": -60,
       "boyut": 100,
       "yon": 90,
       "akislar": [
@@ -33,14 +33,14 @@
             {
               "komut": "hareket_xy_git",
               "parametreler": {
-                "X": -190,
-                "Y": -120
+                "X": -180,
+                "Y": -60
               }
             },
             {
               "komut": "gorunum_soyle",
               "parametreler": {
-                "MESSAGE": "Fareyle gemiyi hareket ettir, kristale ulaş!"
+                "MESSAGE": "Fare ile saga hareket et, surtunme yuzeylerini kesfet!"
               }
             },
             {
@@ -53,26 +53,17 @@
                   }
                 },
                 {
-                  "komut": "hareket_y_yap",
-                  "parametreler": {
-                    "Y": "fare_y"
-                  }
-                },
-                {
                   "komut": "kontrol_eger",
                   "sart": {
                     "komut": "algilama_degiyormu",
-                    "hedef": "EnerjiKristali"
+                    "hedef": "PurtukluZemin"
                   },
                   "alt_bloklar": [
                     {
-                      "komut": "gorunum_soyle",
+                      "komut": "hareket_x_degistir",
                       "parametreler": {
-                        "MESSAGE": "Görev tamamlandı! Kristali aldın!"
+                        "X": 1
                       }
-                    },
-                    {
-                      "komut": "kontrol_durdur"
                     }
                   ]
                 },
@@ -80,17 +71,14 @@
                   "komut": "kontrol_eger",
                   "sart": {
                     "komut": "algilama_degiyormu",
-                    "hedef": "AsteroidBir"
+                    "hedef": "KayganZemin"
                   },
                   "alt_bloklar": [
                     {
-                      "komut": "gorunum_soyle",
+                      "komut": "hareket_x_degistir",
                       "parametreler": {
-                        "MESSAGE": "Asteroide çarptın! Oyun bitti."
+                        "X": 5
                       }
-                    },
-                    {
-                      "komut": "kontrol_durdur"
                     }
                   ]
                 },
@@ -98,85 +86,13 @@
                   "komut": "kontrol_eger",
                   "sart": {
                     "komut": "algilama_degiyormu",
-                    "hedef": "AsteroidIki"
+                    "hedef": "HedefAlan"
                   },
                   "alt_bloklar": [
                     {
                       "komut": "gorunum_soyle",
                       "parametreler": {
-                        "MESSAGE": "Meteor bölgesi tehlikeliydi! Oyun bitti."
-                      }
-                    },
-                    {
-                      "komut": "kontrol_durdur"
-                    }
-                  ]
-                },
-                {
-                  "komut": "kontrol_eger",
-                  "sart": {
-                    "komut": "algilama_degiyormu",
-                    "hedef": "AsteroidUc"
-                  },
-                  "alt_bloklar": [
-                    {
-                      "komut": "gorunum_soyle",
-                      "parametreler": {
-                        "MESSAGE": "Büyük asteroide çarptın! Oyun bitti."
-                      }
-                    },
-                    {
-                      "komut": "kontrol_durdur"
-                    }
-                  ]
-                },
-                {
-                  "komut": "kontrol_eger",
-                  "sart": {
-                    "komut": "algilama_degiyormu",
-                    "hedef": "DusmanGemisi"
-                  },
-                  "alt_bloklar": [
-                    {
-                      "komut": "gorunum_soyle",
-                      "parametreler": {
-                        "MESSAGE": "Düşman gemisi seni yakaladı! Oyun bitti."
-                      }
-                    },
-                    {
-                      "komut": "kontrol_durdur"
-                    }
-                  ]
-                },
-                {
-                  "komut": "kontrol_eger",
-                  "sart": {
-                    "komut": "algilama_degiyormu",
-                    "hedef": "LazerDuvariBir"
-                  },
-                  "alt_bloklar": [
-                    {
-                      "komut": "gorunum_soyle",
-                      "parametreler": {
-                        "MESSAGE": "Lazer duvarına temas ettin! Oyun bitti."
-                      }
-                    },
-                    {
-                      "komut": "kontrol_durdur"
-                    }
-                  ]
-                },
-                {
-                  "komut": "kontrol_eger",
-                  "sart": {
-                    "komut": "algilama_degiyormu",
-                    "hedef": "LazerDuvariIki"
-                  },
-                  "alt_bloklar": [
-                    {
-                      "komut": "gorunum_soyle",
-                      "parametreler": {
-                        "MESSAGE": "Savunma lazerine yakalandın! Oyun bitti."
+                        "MESSAGE": "Tebrikler! Surtunme farkini ogrendin!"
                       }
                     },
                     {
@@ -191,15 +107,15 @@
       ]
     },
     {
-      "isim": "EnerjiKristali",
+      "isim": "PurtukluZemin",
       "gorunum": {
-        "sekil": "daire",
-        "renk": "#facc15",
-        "genislik": 38,
-        "yukseklik": 38
+        "sekil": "dikdortgen",
+        "renk": "#92400e",
+        "genislik": 200,
+        "yukseklik": 60
       },
-      "ilk_x": 195,
-      "ilk_y": 130,
+      "ilk_x": -100,
+      "ilk_y": -120,
       "boyut": 100,
       "yon": 90,
       "akislar": [
@@ -209,46 +125,26 @@
             {
               "komut": "hareket_xy_git",
               "parametreler": {
-                "X": 195,
-                "Y": 130
+                "X": -100,
+                "Y": -120
               }
-            },
-            {
-              "komut": "gorunum_goster"
-            },
-            {
-              "komut": "kontrol_surekli",
-              "alt_bloklar": [
-                {
-                  "komut": "hareket_derece_don",
-                  "parametreler": {
-                    "DEGREES": 8
-                  }
-                },
-                {
-                  "komut": "kontrol_bekle",
-                  "parametreler": {
-                    "SECONDS": 0.05
-                  }
-                }
-              ]
             }
           ]
         }
       ]
     },
     {
-      "isim": "AsteroidBir",
+      "isim": "KayganZemin",
       "gorunum": {
-        "sekil": "daire",
-        "renk": "#78716c",
-        "genislik": 42,
-        "yukseklik": 42
+        "sekil": "dikdortgen",
+        "renk": "#06b6d4",
+        "genislik": 200,
+        "yukseklik": 60
       },
-      "ilk_x": -160,
-      "ilk_y": 90,
+      "ilk_x": 120,
+      "ilk_y": -120,
       "boyut": 100,
-      "yon": 45,
+      "yon": 90,
       "akislar": [
         {
           "tetikleyici": "olay_bayrak",
@@ -256,61 +152,26 @@
             {
               "komut": "hareket_xy_git",
               "parametreler": {
-                "X": -160,
-                "Y": 90
+                "X": 120,
+                "Y": -120
               }
-            },
-            {
-              "komut": "hareket_yone_don",
-              "parametreler": {
-                "DIRECTION": 45
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            },
-            {
-              "komut": "kontrol_surekli",
-              "alt_bloklar": [
-                {
-                  "komut": "hareket_adim_git",
-                  "parametreler": {
-                    "STEPS": 5
-                  }
-                },
-                {
-                  "komut": "hareket_kenardaysa_sek"
-                },
-                {
-                  "komut": "hareket_derece_don",
-                  "parametreler": {
-                    "DEGREES": 3
-                  }
-                },
-                {
-                  "komut": "kontrol_bekle",
-                  "parametreler": {
-                    "SECONDS": 0.03
-                  }
-                }
-              ]
             }
           ]
         }
       ]
     },
     {
-      "isim": "AsteroidIki",
+      "isim": "HedefAlan",
       "gorunum": {
-        "sekil": "daire",
-        "renk": "#a8a29e",
-        "genislik": 32,
-        "yukseklik": 32
+        "sekil": "dikdortgen",
+        "renk": "#22c55e",
+        "genislik": 80,
+        "yukseklik": 40
       },
-      "ilk_x": 90,
+      "ilk_x": 200,
       "ilk_y": -60,
       "boyut": 100,
-      "yon": 135,
+      "yon": 90,
       "akislar": [
         {
           "tetikleyici": "olay_bayrak",
@@ -318,123 +179,26 @@
             {
               "komut": "hareket_xy_git",
               "parametreler": {
-                "X": 90,
+                "X": 200,
                 "Y": -60
               }
-            },
-            {
-              "komut": "hareket_yone_don",
-              "parametreler": {
-                "DIRECTION": 135
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            },
-            {
-              "komut": "kontrol_surekli",
-              "alt_bloklar": [
-                {
-                  "komut": "hareket_adim_git",
-                  "parametreler": {
-                    "STEPS": 7
-                  }
-                },
-                {
-                  "komut": "hareket_kenardaysa_sek"
-                },
-                {
-                  "komut": "hareket_derece_don",
-                  "parametreler": {
-                    "DEGREES": -4
-                  }
-                },
-                {
-                  "komut": "kontrol_bekle",
-                  "parametreler": {
-                    "SECONDS": 0.03
-                  }
-                }
-              ]
             }
           ]
         }
       ]
     },
     {
-      "isim": "AsteroidUc",
-      "gorunum": {
-        "sekil": "daire",
-        "renk": "#57534e",
-        "genislik": 56,
-        "yukseklik": 56
-      },
-      "ilk_x": 30,
-      "ilk_y": 130,
-      "boyut": 100,
-      "yon": -35,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": 30,
-                "Y": 130
-              }
-            },
-            {
-              "komut": "hareket_yone_don",
-              "parametreler": {
-                "DIRECTION": -35
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            },
-            {
-              "komut": "kontrol_surekli",
-              "alt_bloklar": [
-                {
-                  "komut": "hareket_adim_git",
-                  "parametreler": {
-                    "STEPS": 4
-                  }
-                },
-                {
-                  "komut": "hareket_kenardaysa_sek"
-                },
-                {
-                  "komut": "hareket_derece_don",
-                  "parametreler": {
-                    "DEGREES": 2
-                  }
-                },
-                {
-                  "komut": "kontrol_bekle",
-                  "parametreler": {
-                    "SECONDS": 0.04
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "DusmanGemisi",
+      "isim": "Engel",
       "gorunum": {
         "sekil": "dikdortgen",
         "renk": "#ef4444",
-        "genislik": 48,
-        "yukseklik": 30
+        "genislik": 40,
+        "yukseklik": 40
       },
-      "ilk_x": 170,
-      "ilk_y": -110,
+      "ilk_x": 0,
+      "ilk_y": -60,
       "boyut": 100,
-      "yon": 180,
+      "yon": 90,
       "akislar": [
         {
           "tetikleyici": "olay_bayrak",
@@ -442,248 +206,52 @@
             {
               "komut": "hareket_xy_git",
               "parametreler": {
-                "X": 170,
-                "Y": -110
+                "X": 0,
+                "Y": -60
               }
-            },
-            {
-              "komut": "hareket_yone_don",
-              "parametreler": {
-                "DIRECTION": 180
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "isim": "KontrolEngel",
+      "gorunum": {
+        "sekil": "dikdortgen",
+        "renk": "#0f172a",
+        "genislik": 40,
+        "yukseklik": 40
+      },
+      "ilk_x": 0,
+      "ilk_y": -60,
+      "boyut": 100,
+      "yon": 90,
+      "akislar": [
+        {
+          "tetikleyici": "olay_bayrak",
+          "bloklar": [
             {
               "komut": "kontrol_surekli",
               "alt_bloklar": [
                 {
-                  "komut": "hareket_adim_git",
-                  "parametreler": {
-                    "STEPS": 6
-                  }
-                },
-                {
-                  "komut": "hareket_kenardaysa_sek"
-                },
-                {
-                  "komut": "kontrol_bekle",
-                  "parametreler": {
-                    "SECONDS": 0.04
-                  }
+                  "komut": "kontrol_eger",
+                  "sart": {
+                    "komut": "algilama_degiyormu",
+                    "hedef": "Engel"
+                  },
+                  "alt_bloklar": [
+                    {
+                      "komut": "gorunum_soyle",
+                      "parametreler": {
+                        "MESSAGE": "Yuksek surtunme seni durdurdu! Oyun bitti."
+                      }
+                    },
+                    {
+                      "komut": "kontrol_durdur"
+                    }
+                  ]
                 }
               ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "LazerDuvariBir",
-      "gorunum": {
-        "sekil": "dikdortgen",
-        "renk": "#a855f7",
-        "genislik": 18,
-        "yukseklik": 190
-      },
-      "ilk_x": -45,
-      "ilk_y": -35,
-      "boyut": 100,
-      "yon": 90,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": -45,
-                "Y": -35
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "LazerDuvariIki",
-      "gorunum": {
-        "sekil": "dikdortgen",
-        "renk": "#ec4899",
-        "genislik": 170,
-        "yukseklik": 16
-      },
-      "ilk_x": 95,
-      "ilk_y": 55,
-      "boyut": 100,
-      "yon": 90,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": 95,
-                "Y": 55
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "YildizBir",
-      "gorunum": {
-        "sekil": "daire",
-        "renk": "#f8fafc",
-        "genislik": 7,
-        "yukseklik": 7
-      },
-      "ilk_x": -210,
-      "ilk_y": 145,
-      "boyut": 100,
-      "yon": 90,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": -210,
-                "Y": 145
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "YildizIki",
-      "gorunum": {
-        "sekil": "daire",
-        "renk": "#bfdbfe",
-        "genislik": 5,
-        "yukseklik": 5
-      },
-      "ilk_x": -120,
-      "ilk_y": -20,
-      "boyut": 100,
-      "yon": 90,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": -120,
-                "Y": -20
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "YildizUc",
-      "gorunum": {
-        "sekil": "daire",
-        "renk": "#e0f2fe",
-        "genislik": 6,
-        "yukseklik": 6
-      },
-      "ilk_x": 45,
-      "ilk_y": -145,
-      "boyut": 100,
-      "yon": 90,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": 45,
-                "Y": -145
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "YildizDort",
-      "gorunum": {
-        "sekil": "daire",
-        "renk": "#fde68a",
-        "genislik": 8,
-        "yukseklik": 8
-      },
-      "ilk_x": 210,
-      "ilk_y": -5,
-      "boyut": 100,
-      "yon": 90,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": 210,
-                "Y": -5
-              }
-            },
-            {
-              "komut": "gorunum_goster"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "isim": "YildizBes",
-      "gorunum": {
-        "sekil": "daire",
-        "renk": "#c4b5fd",
-        "genislik": 6,
-        "yukseklik": 6
-      },
-      "ilk_x": 125,
-      "ilk_y": 160,
-      "boyut": 100,
-      "yon": 90,
-      "akislar": [
-        {
-          "tetikleyici": "olay_bayrak",
-          "bloklar": [
-            {
-              "komut": "hareket_xy_git",
-              "parametreler": {
-                "X": 125,
-                "Y": 160
-              }
-            },
-            {
-              "komut": "gorunum_goster"
             }
           ]
         }

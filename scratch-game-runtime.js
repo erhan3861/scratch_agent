@@ -542,6 +542,22 @@
         };
     }
 
+    function editorPlugin(targetCount) {
+        const code = `(() => {
+            const expectedTargets=${targetCount};let timer,stopTimer;
+            const prepare=()=>{
+                const logo=document.querySelector('img[alt="Scratch"]');
+                if(logo)logo.style.visibility='hidden';
+                const ready=window.vm&&window.vm.runtime&&window.vm.runtime.targets.length>=expectedTargets&&document.querySelector('.blocklyBlockCanvas');
+                const loader=document.querySelector('[class*="loader_background"]');
+                if(ready&&loader){loader.remove();clearInterval(timer);clearTimeout(stopTimer)}
+            };
+            timer=setInterval(prepare,200);window.addEventListener('load',prepare);
+            stopTimer=setTimeout(()=>{prepare();clearInterval(timer)},15000);
+        })();`;
+        return `data:text/javascript;base64,${btoa(code)}`;
+    }
+
     async function load(input) {
         ensureLayout();
 
@@ -558,7 +574,7 @@
                 ? JSON.parse(input)
                 : input || readEmbeddedGame();
 
-            const {zip} = createZip(model);
+            const {zip, targetCount} = createZip(model);
 
             const base64 = await zip.generateAsync({
                 type: "base64",
@@ -570,6 +586,7 @@
 
             const editor = new URL(CONFIG.editorUrl);
             editor.searchParams.set("locale", CONFIG.locale);
+            editor.searchParams.set("load_plugin", editorPlugin(targetCount));
             editor.hash = `data:application/x.scratch.sb3;base64,${base64}`;
 
             frame.onload = () => {
