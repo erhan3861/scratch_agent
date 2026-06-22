@@ -1,0 +1,17 @@
+name: Purge jsDelivr runtime cache
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - scratch-game-runtime.js
+
+jobs:
+  purge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Purge cached runtime
+        run: |
+          curl --fail-with-body --retry 3 \
+            "https://purge.jsdelivr.net/gh/erhan3861/scratch_agent@main/scratch-game-runtime.js"
