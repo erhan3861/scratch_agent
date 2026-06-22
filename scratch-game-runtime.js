@@ -94,12 +94,37 @@
      * 8  = angle
      * 10 = string
      */
-    function numberInput(value, type = 4) {
-        return [1, [type, asString(value)]];
+    function numberInput(blocks, parentId, value, type = 4) {
+        const id = newBlockId();
+        const opcode = (type === 8) ? "math_angle" : "math_number";
+        blocks[id] = {
+            opcode,
+            next: null,
+            parent: parentId,
+            inputs: {},
+            fields: {
+                NUM: [asString(value), null]
+            },
+            shadow: true,
+            topLevel: false
+        };
+        return [1, id];
     }
 
-    function textInput(value) {
-        return [1, [10, String(value ?? "")]];
+    function textInput(blocks, parentId, value) {
+        const id = newBlockId();
+        blocks[id] = {
+            opcode: "text",
+            next: null,
+            parent: parentId,
+            inputs: {},
+            fields: {
+                TEXT: [String(value ?? ""), null]
+            },
+            shadow: true,
+            topLevel: false
+        };
+        return [1, id];
     }
 
     function reporterInput(blocks, parentId, opcode, shadowValue = [4, "0"]) {
@@ -282,35 +307,35 @@
 
             switch (definition.komut) {
                 case "hareket_xy_git":
-                    block.inputs.X = numberInput(parameters.X);
-                    block.inputs.Y = numberInput(parameters.Y);
+                    block.inputs.X = numberInput(blocks, id, parameters.X);
+                    block.inputs.Y = numberInput(blocks, id, parameters.Y);
                     break;
 
                 case "hareket_yone_don":
-                    block.inputs.DIRECTION = numberInput(parameters.DIRECTION, 8);
+                    block.inputs.DIRECTION = numberInput(blocks, id, parameters.DIRECTION, 8);
                     break;
 
                 case "hareket_adim_git":
-                    block.inputs.STEPS = numberInput(parameters.STEPS);
+                    block.inputs.STEPS = numberInput(blocks, id, parameters.STEPS);
                     break;
 
                 case "hareket_derece_don":
-                    block.inputs.DEGREES = numberInput(parameters.DEGREES, 8);
+                    block.inputs.DEGREES = numberInput(blocks, id, parameters.DEGREES, 8);
                     break;
 
                 case "hareket_x_degistir":
-                    block.inputs.DX = numberInput(parameters.X);
+                    block.inputs.DX = numberInput(blocks, id, parameters.X);
                     break;
 
                 case "hareket_y_degistir":
-                    block.inputs.DY = numberInput(parameters.Y);
+                    block.inputs.DY = numberInput(blocks, id, parameters.Y);
                     break;
 
                 case "hareket_x_yap":
                     if (parameters.X === "fare_x") {
                         block.inputs.X = reporterInput(blocks, id, "sensing_mousex", [4, "0"]);
                     } else {
-                        block.inputs.X = numberInput(parameters.X);
+                        block.inputs.X = numberInput(blocks, id, parameters.X);
                     }
                     break;
 
@@ -318,16 +343,16 @@
                     if (parameters.Y === "fare_y") {
                         block.inputs.Y = reporterInput(blocks, id, "sensing_mousey", [4, "0"]);
                     } else {
-                        block.inputs.Y = numberInput(parameters.Y);
+                        block.inputs.Y = numberInput(blocks, id, parameters.Y);
                     }
                     break;
 
                 case "kontrol_bekle":
-                    block.inputs.DURATION = numberInput(parameters.SECONDS ?? parameters.SURE ?? 1, 5);
+                    block.inputs.DURATION = numberInput(blocks, id, parameters.SECONDS ?? parameters.SURE ?? 1, 5);
                     break;
 
                 case "gorunum_soyle":
-                    block.inputs.MESSAGE = textInput(parameters.MESSAGE ?? parameters.MESAJ ?? "");
+                    block.inputs.MESSAGE = textInput(blocks, id, parameters.MESSAGE ?? parameters.MESAJ ?? "");
                     break;
 
                 case "kontrol_durdur":
@@ -553,7 +578,6 @@
                 [class*="menu-bar_scratch-logo"], 
                 img[alt="Scratch"], 
                 img[alt*="icques"], 
-                img[alt*="E羊icques"],
                 [class*="menu-bar_logo"] {
                     display: none !important;
                 }
